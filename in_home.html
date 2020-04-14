@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Monaco's Map - Tufts Comp20 Final Project"/>
+    <meta name="keywords" content="Monaco's Map, Tufts, Location, Map, Friends"/>
+    <title>Monaco's Map</title>
+    <link rel="stylesheet" type="text/css" href="./in_stylesheet.css" />
+    <script type="text/javascript" language="javascript" src="show_hide.js"></script> <!-- George made this for the in_home.html page to show/hide "article" tags -->
+    <script type="text/javascript" language="javascript" src="database.js"></script>  <!-- Gabe please put DB accessing stuff here -->
+
+</head>
+<body>
+	<header>
+        <a href="./in_home.html"><img src="./img/map_logo.png" alt="Logo for Monaco's Map" height="125px"></a>
+        <ul id="header_nav">
+            <li><a onclick="show_hide('map', 'friends')">Map</a></li>      				<!-- this calls the map up, same page -->
+            <li><a onclick="show_hide('friends', 'map')">Friends</a></li> 				<!-- this calls the friends list up, same page-->
+            <li><a href="./profile.html">Profile</a></li>								<!-- goes to a different page -->
+    	</ul>
+	</header>
+	<main>
+		<article id="welcome">
+			Messrs. SE, Izy, McNin, and Gha welcome you to <em>Monaco's Map</em>.<br />
+			Would you like to <strong>log your location</strong> or to <strong>find your friends</strong>?
+		</article>
+	    <article id="map">
+	    	<h1>MAAAAP</h1>
+
+	    		<!-- here we "log ourselves" by clicking on a photo of a building and giving a time interval that we will be there -->
+	    		<!-- default proceedure: select time period from now, click on location, data logged into DB, user gets a thing saying "ok cool thanks" -->
+	    		<!-- secondary proceedure: user clicks without giving time period, either we default one hour or we refuse the input (and no DB write yet) and instead wait until they add the time necessary -->
+	    		<!-- we dont have any buttons except for the pictures to click and the menu for selecting a time period -->
+	    </article>
+
+	    <article id="friends">
+	    	<h1>hehehe FRAAANDZ</h1>
+	    	<section id="locations">
+	    		<!-- This is where the data from the database needs to go -->
+	    		<!-- ideally, we list the locations on the left alphabetically and then on the right we have the friends who are there -->
+	    		<!-- <div class="people"></div> -->
+	    	</section>
+
+	    </article>
+
+
+
+
+
+	</main>
+</body>
+<footer id="footer">
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+
+	Messrs. SE, Izy, McNin, and Gha can be contacted via carrier pigeon.
+</footer>

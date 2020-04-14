@@ -1,0 +1,1 @@
+// database.js will contain Gabe's way of accessing databases
