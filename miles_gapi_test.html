@@ -26,11 +26,22 @@
             var usrnam_dsply = document.getElementById("usrnam_dsply");
             usrnam_dsply.innerHTML += "Name: " + profile.getName();
         }
+
+        
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+  }
+</script>
     </script>
     
 </head>
 <body>
     <div class="g-signin2" data-longtitle="true" data-width="240" data-height="50"data-onsuccess="onSignIn"></div>
+
+    <a href="#" onclick="signOut();"> Sign out</a>
 
     <div id="usrnam_dsply"> 
     </div>
