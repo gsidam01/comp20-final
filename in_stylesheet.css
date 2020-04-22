@@ -43,7 +43,7 @@ h1
 .g-signin2 
 {
 	position: absolute;
-	margin-right: 2px;
+	margin-right: 2px;  
 	right: 0%;
 }
 
@@ -76,10 +76,43 @@ header ul li a
 
 #map
 {
-	display: none;
+	/*display: none;*/
+	display: flex;
+	flex-flow: wrap;
+	position: relative;
+	justify-content: space-around;
+
+}
+
+.location_image
+{
+	width: 35%;
+	margin-bottom: 20px;
+	box-shadow: 0px 2px 5px #000;
 }
 
 #friends
 {
 	display: none;
 }
+
+
+article
+{
+	margin: 50px;
+	background-color: #b9a37e;
+	box-shadow: 0px 2px 5px #000;
+	padding: 10px 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
