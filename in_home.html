@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="Monaco's Map - Tufts Comp20 Final Project"/>
     <meta name="keywords" content="Monaco's Map, Tufts, Location, Map, Friends"/>
-    <title>Monaco's Map</title>
+    <title> Monaco's Map</title>
     <link rel="stylesheet" type="text/css" href="./in_stylesheet.css" />
     <script type="text/javascript" language="javascript" src="show_hide.js"></script> <!-- George made this for the in_home.html page to show/hide "article" tags -->
     <script type="text/javascript" language="javascript" src="database.js"></script>  <!-- Gabe please put DB accessing stuff here -->
@@ -33,14 +33,21 @@
         }
     </script>
 
+
 </head>
+
 <body>
 	<header>
-        <a href="./in_home.html"><img src="./img/map_logo.png" alt="Logo for Monaco's Map" height="125px"></a>
+        <a href="./in_home.html"> <img src="./img/compass.png" alt="Logo for Monaco's Map" height="150" style="margin-left: 10px"> </a>
+        <h1> monaco's map </h1>
+        <div class="g-signin2" data-longtitle="true" data-width="240" data-height="50"data-onsuccess="onSignIn"></div>
         <ul id="header_nav">
-            <li><a onclick="show_hide('map', 'friends')">Map</a></li>      				<!-- this calls the map up, same page -->
-            <li><a onclick="show_hide('friends', 'map')">Friends</a></li> 				<!-- this calls the friends list up, same page-->
-            <li><a href="./profile.html">Profile</a></li>								<!-- goes to a different page -->
+            <li><a onclick="open_map()">Map</a></li>      				
+            <!-- this calls the map up, same page -->
+            <li><a onclick="open_friends()">Friends</a></li> 				
+            <!-- this calls the friends list up, same page-->
+            <li><a onclick="open_profile()">Profile</a></li>								
+            <!-- display the friends div--> 
     	</ul>
 	</header>
 	<main>
@@ -50,7 +57,6 @@
 		</article>
 	    <article id="map">
 	    	<h1>MAAAAP</h1>
-
 	    		<!-- here we "log ourselves" by clicking on a photo of a building and giving a time interval that we will be there -->
 	    		<!-- default proceedure: select time period from now, click on location, data logged into DB, user gets a thing saying "ok cool thanks" -->
 	    		<!-- secondary proceedure: user clicks without giving time period, either we default one hour or we refuse the input (and no DB write yet) and instead wait until they add the time necessary -->
@@ -68,8 +74,6 @@
 	    </article>
 
 
-        <div class="g-signin2" data-longtitle="true" data-width="240" data-height="50"data-onsuccess="onSignIn"></div>
-
         <a href="#" onclick="signOut();"> Sign out</a>
 
         <div id="usrnam_dsply"> </div>
@@ -84,6 +88,7 @@
 	<br />
 	<br />
 	<br />
+    <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a>
 
 	Messrs. SE, Izy, McNin, and Gha can be contacted via carrier pigeon.
 </footer>

@@ -1,9 +1,43 @@
+@font-face {font-family: "Parchment";
+    src: url("./Parchment/Parchment.eot"), /* IE9*/
+    url("./Parchment/Parchment.woff2") format("woff2"), /* chrome firefox */
+    url("./Parchment/Parchment.woff") format("woff"), /* chrome firefox */
+    url("./Parchment/Parchment.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("./Parchment/Parchment.svg") format("svg"); /* iOS 4.1- */
+}
+
+body 
+{
+	margin: 0px;
+	padding: 0px;
+	background-color: #ebd5b3;
+	background-image: url(./img/old_map.jpg);
+	background-repeat: no-repeat;
+	background-size: 1500px;
+}
+
 header
 {
 	width: 100%;
-	background-color: tan;
+	background-color: #b9a37e;
 	color: #000000;
+	display: flex;
+	flex-flow: wrap;
+	box-shadow: 0px 2px 5px #000;
+	position: relative;
 }
+
+h1
+{
+	/*position: absolute;*/
+	margin: 0 auto;
+	font-family: 'Parchment';
+	font-size: 125px;
+	color: #3b727c;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 header ul
 {
 	display: inline-block;
