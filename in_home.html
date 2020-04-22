@@ -9,6 +9,30 @@
     <script type="text/javascript" language="javascript" src="show_hide.js"></script> <!-- George made this for the in_home.html page to show/hide "article" tags -->
     <script type="text/javascript" language="javascript" src="database.js"></script>  <!-- Gabe please put DB accessing stuff here -->
 
+    <!-- Miles's Google API stuff -->
+    <script src="https://apis.google.com/js/platform.js" async defer> </script>
+    <meta name="google-signin-client_id" content="626801578575-q0vuggp5r43sl9v79qhv7ksmhgo19p4u.apps.googleusercontent.com">
+    <script type="text/javascript">
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            //console.log('ID: ' + profile.getId()); 
+            // Do not send to your backend! Use an ID token instead.
+            //console.log('Name: ' + profile.getName());
+            //console.log('Image URL: ' + profile.getImageUrl());
+            //console.log('Email: ' + profile.getEmail()); 
+            // This is null if the 'email' scope is not present.
+            var usrnam_dsply = document.getElementById("usrnam_dsply");
+            usrnam_dsply.innerHTML += "Name: " + profile.getName();
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+    </script>
+
 </head>
 <body>
 	<header>
@@ -44,7 +68,11 @@
 	    </article>
 
 
+        <div class="g-signin2" data-longtitle="true" data-width="240" data-height="50"data-onsuccess="onSignIn"></div>
 
+        <a href="#" onclick="signOut();"> Sign out</a>
+
+        <div id="usrnam_dsply"> </div>
 
 
 	</main>
