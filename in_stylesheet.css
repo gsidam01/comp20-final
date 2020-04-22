@@ -40,6 +40,13 @@ h1
 	margin-bottom: 0;
 }
 
+.g-signin2 
+{
+	position: absolute;
+	margin-right: 2px;
+	right: 0%;
+}
+
 header ul
 {
 	display: inline-block;
