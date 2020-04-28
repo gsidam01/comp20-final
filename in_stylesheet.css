@@ -63,15 +63,17 @@ header ul li
 	list-style-type: none;
 	display: inline-block;
 	width: 15%;
-	margin-bottom: 2px;
+	margin-bottom: 5px;
 	padding-top: 3px;
 	padding-bottom: 3px;
 	background-color: #b05f66;
 	border-radius: 5px;
 }
-header ul li a
+
+header ul li:hover 
 {
-	text-decoration: none;
+	cursor: pointer;
+	background-color: #c04f56;
 }
 
 #map
@@ -107,6 +109,11 @@ header ul li a
 }
 
 
+#profile
+{
+	display: none;
+}
+
 article
 {
 	margin: 50px 80px;
@@ -115,6 +122,12 @@ article
 	padding: 10px 20px;
 }
 
+footer
+{
+	background-color: #b9a37e;
+	box-shadow: 0px 2px 5px #000;
+	padding: 10px 20px;
+}
 
 
 
