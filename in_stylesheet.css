@@ -10,11 +10,13 @@ body
 {
 	margin: 0px;
 	padding: 0px;
+	position: relative;
 	background-color: #ebd5b3;
 	background-image: url(./img/old_map.jpg);
 	background-repeat: no-repeat;
 	background-size: 1500px;
 }
+
 
 header
 {
@@ -76,18 +78,30 @@ header ul li:hover
 	background-color: #c04f56;
 }
 
+main
+{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
 #map
 {
-	/*display: none;*/
+	display: block;
+	text-align: center;
+}
+
+#map_images
+{
 	display: flex;
 	flex-flow: row wrap;
 	/*position: relative;*/
 	justify-content: space-around;
-
 }
 
 .location_image
 {
+	background-color: white;
 	width: 40%;
 	margin-bottom: 20px;
 	box-shadow: 0px 2px 5px #000;
@@ -103,6 +117,12 @@ header ul li:hover
             text-align: center;*/
 }
 
+.location_image img:hover
+{
+	opacity: 0.5;
+	cursor: pointer;
+}
+
 #friends
 {
 	display: none;
@@ -114,12 +134,21 @@ header ul li:hover
 	display: none;
 }
 
+
 article
 {
-	margin: 50px 80px;
+	width: 90%;
+	margin: 20px 0px;
 	background-color: #b9a37e;
 	box-shadow: 0px 2px 5px #000;
 	padding: 10px 20px;
+	font-size: 20pt;
+}
+
+#welcome
+{
+	background-color: #82A775;
+	
 }
 
 footer
@@ -127,7 +156,61 @@ footer
 	background-color: #b9a37e;
 	box-shadow: 0px 2px 5px #000;
 	padding: 10px 20px;
+	position: absolute;
+	width: 100%;
 }
+
+
+.map_form 
+{
+
+}
+
+input[type=text]
+{
+	font-size: 20pt;
+	text-decoration: none;
+	border-radius: 5px;
+	border: 2px solid #3b727c;
+	color: #3b727c;
+}
+input[type=text]:focus
+{
+	outline: none;
+}
+
+
+input[type=submit]
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

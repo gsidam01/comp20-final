@@ -37,7 +37,7 @@
     <script type="text/javascript">
         function open_map() 
         {
-            document.getElementById("map").style.display = "flex";
+            document.getElementById("map").style.display = "block";
             document.getElementById("friends").style.display = "none";
             document.getElementById("profile").style.display = "none";
         }
@@ -45,7 +45,7 @@
         function open_friends() 
         {
             document.getElementById("map").style.display = "none";
-            document.getElementById("friends").style.display = "flex";
+            document.getElementById("friends").style.display = "block";
             document.getElementById("profile").style.display = "none";
         }
 
@@ -53,7 +53,7 @@
         {
             document.getElementById("map").style.display = "none";
             document.getElementById("friends").style.display = "none";
-            document.getElementById("profile").style.display = "flex";
+            document.getElementById("profile").style.display = "block";
         }
 
     </script>
@@ -77,12 +77,23 @@
 	<main>
 
 		<article id="welcome">
-			Messrs. SE, Izy, McNin, and Gha welcome you to <em>Monaco's Map</em>.<br />
-			Would you like to <strong>log your location</strong> or to <strong>find your friends</strong>?
+			Messrs. SE, Izy, McNin, and Gha welcome you to <em>Monaco's Map</em>:<br />
+			The site where you can coordinate your lunch and study breaks with 
+            friends on Tufts campus.
 		</article>
 
-
+        
 	    <div id="map">
+            <article>
+                <form class="map_form">
+                    <input type="text" name="location" >
+                    <input type="text" name="time">
+                    <input type="submit" name="submit">
+                </form>
+            </article>
+
+            <div id="map_images"> 
+
             <div class="location_image">
                  <img src="./img/tisch.jpg" height="400px">
             </div>
@@ -106,10 +117,11 @@
             <div class="location_image">
                  <img src="./img/dewick.jpg" height="400px">
             </div>
-	    		<!-- here we "log ourselves" by clicking on a photo of a building and giving a time interval that we will be there -->
-	    		<!-- default proceedure: select time period from now, click on location, data logged into DB, user gets a thing saying "ok cool thanks" -->
-	    		<!-- secondary proceedure: user clicks without giving time period, either we default one hour or we refuse the input (and no DB write yet) and instead wait until they add the time necessary -->
-	    		<!-- we dont have any buttons except for the pictures to click and the menu for selecting a time period -->
+    		<!-- here we "log ourselves" by clicking on a photo of a building and giving a time interval that we will be there -->
+    		<!-- default proceedure: select time period from now, click on location, data logged into DB, user gets a thing saying "ok cool thanks" -->
+    		<!-- secondary proceedure: user clicks without giving time period, either we default one hour or we refuse the input (and no DB write yet) and instead wait until they add the time necessary -->
+    		<!-- we dont have any buttons except for the pictures to click and the menu for selecting a time period -->
+            </div>
 	    </div>
 
 
