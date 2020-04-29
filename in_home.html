@@ -23,9 +23,10 @@
             //console.log('Email: ' + profile.getEmail()); 
             // This is null if the 'email' scope is not present.
             var usrnam_dsply = document.getElementById("usrnam_dsply");
-            usrnam_dsply.innerHTML += "Name: " + profile.getName();
+            usrnam_dsply.innerHTML = "User: " + profile.getName();
             var pic_dsply = document.getElementById("pic_dsply");
-            pic_dsply.innerHTML += "<img src=\"" + profile.getImageUrl() + "\">";
+            // pic_dsply.innerHTML += "<img src=\"" + profile.getImageUrl() + "\">";
+            pic_dsply.src = profile.getImageUrl();
         }
 
         function signOut() {
@@ -33,6 +34,12 @@
             auth2.signOut().then(function () {
                 console.log('User signed out.');
             });
+
+            var usrnam_dsply = document.getElementById("usrnam_dsply");
+            usrnam_dsply.innerHTML = "User: No user signed in";
+            var pic_dsply = document.getElementById("pic_dsply");
+            pic_dsply.src = "./img/question_mark.png";
+            open_map();
         }
     </script>
 
@@ -141,8 +148,8 @@
 
         <article id="profile">
             <div id="profile_info">
-                <div id="usrnam_dsply"> User: No user signed in</div>
-                <img id="pic_dsply" style="border-radius: 50%" src="">
+                <div id="usrnam_dsply"> User: No user signed in </div>
+                <img src="./img/question_mark.png" alt="problem loading question mark image" style="border-radius: 50%;" height="100"> 
             </div>
             
             Here you can sign out : <br>
