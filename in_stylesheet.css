@@ -79,6 +79,7 @@ header ul li
 	background-color: #b05f66;
 	border-radius: 5px;
 	color: white;
+	font-family: Helvetica;
 }
 
 header ul li:hover 
@@ -199,6 +200,8 @@ input[type=button], input[type=submit], input[type=reset] {
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
+  font-family: Helvetica;
+  font-size: 14px;
 }
 
 
