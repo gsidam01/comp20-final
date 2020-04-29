@@ -50,6 +50,7 @@
             document.getElementById("map").style.display = "block";
             document.getElementById("friends").style.display = "none";
             document.getElementById("profile").style.display = "none";
+            document.getElementById("add_friend").style.display = "none";
         }
 
         function open_friends() 
@@ -57,6 +58,7 @@
             document.getElementById("map").style.display = "none";
             document.getElementById("friends").style.display = "block";
             document.getElementById("profile").style.display = "none";
+            document.getElementById("add_friend").style.display = "none";
         }
 
         function open_profile () 
@@ -64,6 +66,7 @@
             document.getElementById("map").style.display = "none";
             document.getElementById("friends").style.display = "none";
             document.getElementById("profile").style.display = "flex";
+            document.getElementById("add_friend").style.display = "block";
         }
 
         function fill_text(location_name_string)
@@ -175,10 +178,17 @@
                 <img id="pic_dsply" src="./img/question_mark.png" alt="problem loading question mark image" style="border-radius: 50%; align-self: flex-start;" height="100"> 
                 <div id="usrnam_dsply" > User: No user signed in </div>
             </div>
-            
-            Here you can sign out : <br>
 
             <div id="signout_button" onclick="signOut();"> Sign Out</div>
+        </article>
+
+        <article id="add_friend">
+            <div style="font-family: 'Parchment'; font-size: 60pt;">Find a friend</div> 
+            <form>
+                Enter your friend's gmail: &nbsp &nbsp <input type="text" name="add_a_friend"> 
+
+                <input type="submit" value="Submit">
+            </form>
         </article>
 
 	</main>

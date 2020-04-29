@@ -10,6 +10,7 @@ html
 {
 	max-width: 100%;
 	overflow-x: hidden;
+	font-family: Helvetica;
 }
 
 body 
@@ -147,18 +148,39 @@ main
 	position: relative;
 	flex-flow: row wrap;
 	align-items: center;
-
+	justify-content: space-around;
 }
 
 #profile_info
 { 
 	background-color: white;
 	text-align: left;
-	margin: 10px 5px;
+	margin: 10px 0px;
 	padding: 5px 5px;
 	display: flex;
 	align-items: center;
-	width: 550px;
+	width: 65%;
+}
+
+#add_friend
+{
+	
+}
+
+#signout_button
+{	
+	font-size: 22pt;
+	color: white;
+	margin: 10px 5px;
+	padding: 10px 20px;
+	background-color: #b05f66;
+	border-radius: 5px;
+}	
+
+#signout_button:hover
+{
+	cursor: pointer;
+	background-color: #c04f56;
 }
 
 #usrnam_dsply
@@ -196,17 +218,9 @@ footer
 	width: 100%;
 }
 
-#signout_button
-{
-
-}
-
 .map_form 
-{	text-align: left;
-	/*display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-flow: row wrap;*/
+{	
+	text-align: left;
 }
 
 input[type=text]
