@@ -29,8 +29,8 @@ body
 header
 {
 	width: 100%;
-	background-color: #b9a37e;
-	color: #000000;
+	background-color: #B9A37E;
+	color: white;
 	display: flex;
 	flex-flow: wrap;
 	box-shadow: 0px 2px 5px #000;
@@ -160,7 +160,7 @@ article
 	transform: translateX(5%);
 	width: 90%;
 	margin: 20px 0px;
-	background-color: #b9a37e;
+	background-color: #B9A37E;
 	box-shadow: 0px 2px 5px #000;
 	padding: 10px 20px;
 	font-size: 20pt;
@@ -174,7 +174,7 @@ article
 
 footer
 {
-	background-color: #b9a37e;
+	background-color: #B9A37E;
 	box-shadow: 0px 2px 5px #000;
 	padding: 10px 20px;
 	width: 100%;
