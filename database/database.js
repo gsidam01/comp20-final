@@ -2,7 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 const url = "mongodb+srv://gabman15:KVUSknDeCOb9@cluster0-amdd2.mongodb.net/test?retryWrites=true&w=majority";
 
-async function addPerson(google_id, name, location, timeStart, timeEnd, callback) {
+async function addPerson(email, name, callback) {
     MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, db) {
 	if(err) {
 	    return console.log(err);
@@ -10,9 +10,9 @@ async function addPerson(google_id, name, location, timeStart, timeEnd, callback
 
 	var dbo = db.db("MonacoMap");
 	var ppl = dbo.collection("People");
-	var newPerson = {"google_id": google_id, "name": name,
-			 "location": location, "time_start": timeStart,
-			 "time_end": timeEnd, "friends": []};
+	var newPerson = {"email": email, "name": name,
+			 "location": null, "time_start": null,
+			 "time_end": null, "friends": []};
 	ppl.insertOne(newPerson, function(err, res) {
 	    if (err) {
 		console.log ("Error: " + err);
@@ -25,7 +25,7 @@ async function addPerson(google_id, name, location, timeStart, timeEnd, callback
     });
 }
 
-async function addFriend(google_id, friendName) {
+async function addFriend(email, friendEmail) {
     MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, db) {
 	if(err) {
 	    return console.log(err);
@@ -33,33 +33,26 @@ async function addFriend(google_id, friendName) {
 
 	var dbo = db.db("MonacoMap");
 	var ppl = dbo.collection("People");
-	var s = ppl.find().stream();
-	var s = ppl.find({},{projection: {"google_id":1, "name":1, "location":1, "time_start": 1,
-					  "time_end": 1, "_id":0}}).stream();
-	var friend;
-	s.on("data", function(item) {
-	    if(item.name == friendName) {
-		console.log(item);
-		friend = item;
-	    }
-	});
-	s.on("end", function() {
-	    console.log("end of data");
-	    console.log("Friend: "+friend.name);
-
-	    ppl.updateOne(
-		{
-		    "google_id":google_id
-		},
-		{
-		    $push: {
-			"friends": friend.google_id
+	ppl.findOne(
+	    {"email": friendEmail},
+	    function(err,result) {
+		var friend = result;
+		console.log(friend.email);
+		ppl.updateOne(
+		    {
+			"email":email
+		    },
+		    {
+			$push: {
+			    "friends": friend.email
+			}
 		    }
-		}
-	    );
-	    db.close();
-	});
-	console.log("after find");
+		).then (function() {
+		    db.close();
+		});
+		console.log("Succesfully added friend to " + email);
+	    }
+	);
     });
 }
 
@@ -82,18 +75,87 @@ async function removeAllPeople() {
     });
 }
 
+function updatePerson(email, location, timeStart, timeEnd) {
+    MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, db) {
+	if(err) {
+	    return console.log(err);
+	}
+
+	var dbo = db.db("MonacoMap");
+	var ppl = dbo.collection("People");
+
+	var query = {"email":email};
+	var vals = {$set: {"location":location, "time_start":timeStart, "time_end":timeEnd}};
+	ppl.updateOne(query, vals, function(err, res) {
+	    if (err) {
+		console.log ("Error: " + err);
+		return;
+	    }
+	    console.log("Successfully updated "+email+" to be at "+location);
+	    db.close();
+	});
+    });
+}
+
+function getFriendInfo(email) {
+    MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, db) {
+	if(err) {
+	    return console.log(err);
+	}
+
+	var dbo = db.db("MonacoMap");
+	var ppl = dbo.collection("People");
+
+	var query = {"email":email};
+
+	ppl.findOne(query, function(err, res) {
+	    if (err) {
+		console.log ("Error: " + err);
+		return;
+	    }
+	    var friends = res.friends;
+	    ppl.find({"email": {$in : friends}},
+		     {projection:{"_id":0,"name":1,"location":1,"time_end":1}}).toArray(function(err,res) {
+			 if (err) {
+			     console.log ("Error: " + err);
+			     return;
+			 }
+			 //console.log(res);
+			 //var friendInfoText = '{"friends" : []}';
+			 var friendInfo = JSON.parse('{"friends" : []}');
+			 friendInfo.friends = res;
+			 console.log(friendInfo);
+			 db.close();
+		     }
+	    );
+	    /*var friendInfoText = "{'friends' : []}";
+	      var friendInfo = JSON.parse(friendInfoText);*/
+	    /*for (i=0;i < friends.length;i++) {
+		console.log("Finding "+friends[i]);
+		ppl.findOne({"email":friends[i]}, function(err, res) {
+		    if (err) {
+			console.log ("Error: " + err);
+			return;
+		    }
+		    
+		});
+	    }*/
+	    //console.log("Successfully updated "+email+" to be at "+location);
+	    //console.log(friends);
+
+	});
+    });
+}
+
 async function main()
 {
-    //addPerson(1337,"Mata Nui", "Bara Aqua", "00:00", "23:59",function() {});
+    //addPerson("matoro@gmail.com","Toa Matoro", function() {});
     //removeAllPeople();
-    //addPerson(69,"Tahu Nuva", "Bara Aqua", "00:00", "23:59",function() {
-        addFriend(69,"Mata Nui");
+    //addPerson("tahu@gmail.com","Tahu Nuva",function() {});
+    //    addFriend("tahu@gmail.com","matoro@gmail.com");
     //});
-
-	
+    //updatePerson("matoro@gmail.com","Karda Nui","15:30","16:30");
+    getFriendInfo("tahu@gmail.com");
 }
-/*
-addPerson(1337,"Mata Nui", "Bara Aqua", "00:00", "23:59");
-addFriend(1337,"Great Being");
-*/
+
 main();
