@@ -18,7 +18,7 @@ body
 	padding: 0px;
 	position: relative;
 	background-color: #ebd5b3;
-	background-image: url(./img/old_map.jpg);
+	background-image: url(./img/elder_map.jpg);
 	background-repeat: no-repeat;
 	max-width: 100%;
 	overflow-x: hidden;
@@ -78,6 +78,8 @@ header ul li
 	padding-bottom: 3px;
 	background-color: #b05f66;
 	border-radius: 5px;
+	color: white;
+	font-family: Helvetica;
 }
 
 header ul li:hover 
@@ -206,6 +208,8 @@ input[type=button], input[type=submit], input[type=reset] {
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
+  font-family: Helvetica;
+  font-size: 14px;
 }
 
 
