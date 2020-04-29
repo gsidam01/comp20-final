@@ -30,7 +30,7 @@ header
 {
 	width: 100%;
 	background-color: #64513B;
-	color: #000000;
+	color: white;
 	display: flex;
 	flex-flow: wrap;
 	box-shadow: 0px 2px 5px #000;
@@ -174,7 +174,7 @@ article
 
 footer
 {
-	background-color: #b9a37e;
+	background-color: 64513B;
 	box-shadow: 0px 2px 5px #000;
 	padding: 10px 20px;
 	width: 100%;
