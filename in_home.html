@@ -63,7 +63,7 @@
         {
             document.getElementById("map").style.display = "none";
             document.getElementById("friends").style.display = "none";
-            document.getElementById("profile").style.display = "block";
+            document.getElementById("profile").style.display = "flex";
         }
 
     </script>
@@ -148,11 +148,13 @@
 
         <article id="profile">
             <div id="profile_info">
-                <div id="usrnam_dsply"> User: No user signed in </div>
-                <img id="pic_dsply" src="./img/question_mark.png" alt="problem loading question mark image" style="border-radius: 50%;" height="100"> 
+                <img id="pic_dsply" src="./img/question_mark.png" alt="problem loading question mark image" style="border-radius: 50%; align-self: flex-start;" height="100"> 
+                <div id="usrnam_dsply" > User: No user signed in </div>
             </div>
             
             Here you can sign out : <br>
+
+
             <a href="#" onclick="signOut();"> Sign out</a>
         </article>
 

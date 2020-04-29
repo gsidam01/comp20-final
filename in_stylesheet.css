@@ -145,15 +145,26 @@ main
 {
 	display: none;
 	position: relative;
+	flex-flow: row wrap;
+	align-items: center;
 
 }
 
 #profile_info
-{
+{ 
 	background-color: white;
-	
+	text-align: left;
+	margin: 10px 5px;
+	padding: 5px 5px;
+	display: flex;
+	align-items: center;
+	width: 550px;
 }
 
+#usrnam_dsply
+{
+	font-size: 30pt;
+}
 
 article
 {
