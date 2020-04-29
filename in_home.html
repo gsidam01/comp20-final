@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./in_stylesheet.css" />
     <script type="text/javascript" language="javascript" src="show_hide.js"></script> <!-- George made this for the in_home.html page to show/hide "article" tags -->
     <script type="text/javascript" language="javascript" src="database.js"></script>  <!-- Gabe please put DB accessing stuff here -->
+    <script type="text/javascript" language="javascript" src="get_friends.js"></script>  <!-- Geo's call these modules when logging in and/or adding friends -->
 
     <!-- Miles's Google API stuff -->
     <script src="https://apis.google.com/js/platform.js" async defer> </script>
@@ -148,17 +149,13 @@
 
 	    <article id="friends">
 	    	<h2>hehehe FRAAANDZ</h2>
+	        <input type="button" value="loadfriends" onclick="insert_friends_data()"> //get rid of this eventually, have this function called when we log in
                 <!-- This is where the data from the database needs to go -->
                 <!-- ideally, we list the locations on the left alphabetically and then on the right we have the friends who are there -->
                 <!-- <div class="people"></div> -->
 	    	<section id="locations">
-                <table>
-                    <tr>
-                        <th>Friend</th>
-                        <th>Location</th>
-                    </tr>
-                    <tr id="friends_pop_here">
-                    </tr>
+                <table id="friends_pop_here">
+			
                 </table>
 	    	</section>
 
