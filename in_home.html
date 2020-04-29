@@ -101,17 +101,25 @@
             <article>
                 <form class="map_form" name="map_form">
                     Where are you? &nbsp &nbsp <input type="text" name="location" > <br>
-                    How long will you be there?  &nbsp &nbsp  <input type="text" name="time"> <br>
+
+                    How long will you be there? &nbsp &nbsp Hours:&nbsp<input type="text" name="duration_hours" style="width: 60px;"> &nbsp Minutes:&nbsp<input type="text" name="duration_minutes" style="width: 60px;"> <br>
+
+                    <div style="margin-left: 150px; font-style: normal; font-size:50pt; font-family: 'Parchment'; margin-top: -10px;"> or </div> 
+
+                    When will you leave? &nbsp &nbsp <input type="text" name="time_hours" style="width: 60px">:<input type="text" name="time_minutes" style="width: 60px">
+                    <label class="radio_container">
+                        <input type="radio" name="am_or_pm" value="am" checked> 
+                        <span class="checkmark"> </span> am
+                    </label>
+
+                    <label class="radio_container">
+                        <input type="radio" name="am_or_pm" value="pm"> 
+                        <span class="checkmark"> </span> pm
+                    </label>
+                    <br>
                     <input type="submit" name="submit">
                 </form>
             </article>
-
-            <!-- <div style="width: 5%; background-color: white;"> 1 </div>
-            <div style="width: 10%; background-color: white;"> 1 </div>
-            <div style="width: 15%; background-color: white;"> 1 </div>
-            <div style="width: 20%; background-color: white;"> 1 </div>
-            <div style="width: 25%; background-color: white;"> 1 </div>
-            <div style="width: 30%; background-color: white;"> 1 </div> -->
 
             <div id="map_images"> 
 
@@ -181,7 +189,7 @@
 </body>
 
 <footer id="footer">
-    <div style="width: 50%">
+    <div style="width: 55%">
     "Antique Map" font courtesy of <a target="_blank" href="http://www.onlinewebfonts.com"> oNline Web Fonts</a> <br>
 	
     Color scheme from <a target="_blank" href="https://www.schemecolor.com/old-map.php"> schemecolor.com</a> <br>
