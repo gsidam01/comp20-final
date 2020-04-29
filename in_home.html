@@ -24,6 +24,8 @@
             // This is null if the 'email' scope is not present.
             var usrnam_dsply = document.getElementById("usrnam_dsply");
             usrnam_dsply.innerHTML += "Name: " + profile.getName();
+            var pic_dsply = document.getElementById("pic_dsply");
+            pic_dsply.innerHTML += "<img src=\"" + profile.getImageUrl() + "\">";
         }
 
         function signOut() {
@@ -141,8 +143,11 @@
             <h2> Profile </h2>
             Your user name:
             <div id="usrnam_dsply"> </div>
-            Here are all of your friends : <br>
-            <br>
+
+            Your profile picture:
+            <div id = "pic_dsply"> </div>
+
+            
             Here you can sign out : <br>
             <a href="#" onclick="signOut();"> Sign out</a>
 
@@ -163,6 +168,7 @@
 	<br />
 	<br />
     <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a>
+    Color schemem from: https://www.schemecolor.com/old-map.php
 
 	Messrs. SE, Izy, McNin, and Gha can be contacted via carrier pigeon.
 
