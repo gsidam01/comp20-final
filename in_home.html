@@ -25,7 +25,6 @@
             var usrnam_dsply = document.getElementById("usrnam_dsply");
             usrnam_dsply.innerHTML = "User: " + profile.getName();
             var pic_dsply = document.getElementById("pic_dsply");
-            // pic_dsply.innerHTML += "<img src=\"" + profile.getImageUrl() + "\">";
             pic_dsply.src = profile.getImageUrl();
         }
 
@@ -96,11 +95,18 @@
 	    <div id="map">
             <article>
                 <form class="map_form">
-                    <input type="text" name="location" >
-                    <input type="text" name="time">
+                    Where are you? &nbsp &nbsp <input type="text" name="location" > <br>
+                    When do you plan on leaving?  &nbsp &nbsp  <input type="text" name="time"> <br>
                     <input type="submit" name="submit">
                 </form>
             </article>
+
+            <!-- <div style="width: 5%; background-color: white;"> 1 </div>
+            <div style="width: 10%; background-color: white;"> 1 </div>
+            <div style="width: 15%; background-color: white;"> 1 </div>
+            <div style="width: 20%; background-color: white;"> 1 </div>
+            <div style="width: 25%; background-color: white;"> 1 </div>
+            <div style="width: 30%; background-color: white;"> 1 </div> -->
 
             <div id="map_images"> 
 
@@ -154,8 +160,7 @@
             
             Here you can sign out : <br>
 
-
-            <a href="#" onclick="signOut();"> Sign out</a>
+            <div id="signout_button" onclick="signOut();"> Sign Out</div>
         </article>
 
         
