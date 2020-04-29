@@ -187,9 +187,12 @@ article
 
 footer
 {
+	display: flex;
+	justify-content: space-between;
 	background-color: #B9A37E;
 	box-shadow: 0px 2px 5px #000;
 	padding: 10px 20px;
+	font-size: 16pt;
 	width: 100%;
 }
 
