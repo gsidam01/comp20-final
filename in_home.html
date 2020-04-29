@@ -65,6 +65,11 @@
             document.getElementById("profile").style.display = "flex";
         }
 
+        function fill_text(location_name_string)
+        {
+            document.map_form.location.value = location_name_string;
+        }
+
     </script>
 
 </head>
@@ -94,9 +99,9 @@
         
 	    <div id="map">
             <article>
-                <form class="map_form">
+                <form class="map_form" name="map_form">
                     Where are you? &nbsp &nbsp <input type="text" name="location" > <br>
-                    When do you plan on leaving?  &nbsp &nbsp  <input type="text" name="time"> <br>
+                    How long will you be there?  &nbsp &nbsp  <input type="text" name="time"> <br>
                     <input type="submit" name="submit">
                 </form>
             </article>
@@ -110,27 +115,27 @@
 
             <div id="map_images"> 
 
-            <div class="location_image">
+            <div class="location_image" onclick="fill_text('Tisch Library')">
                  <img src="./img/tisch.jpg" height="400px">
             </div>
 
-            <div class="location_image">
+            <div class="location_image" onclick="fill_text('SEC')">
                  <img src="./img/sec.jpg" height="400px">
             </div>
 
-            <div class="location_image">
+            <div class="location_image" onclick="fill_text('Campus Center')">
                  <img src="./img/campus_center.jpg" height="400px">
             </div>
 
-            <div class="location_image">
+            <div class="location_image" onclick="fill_text('Tisch Gym')">
                  <img src="./img/gym.jpg" height="400px">
             </div>
 
-            <div class="location_image">
+            <div class="location_image" onclick="fill_text('Carmichael Hall')">
                  <img src="./img/carm.jpg" height="400px">
             </div>
 
-            <div class="location_image">
+            <div class="location_image" onclick="fill_text('Dewick Dining Hall')">
                  <img src="./img/dewick.jpg" height="400px">
             </div>
     		<!-- here we "log ourselves" by clicking on a photo of a building and giving a time interval that we will be there -->
