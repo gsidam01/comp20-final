@@ -26,9 +26,7 @@
             usrnam_dsply.innerHTML = "User: " + profile.getName();
             var pic_dsply = document.getElementById("pic_dsply");
             // pic_dsply.innerHTML += "<img src=\"" + profile.getImageUrl() + "\">";
-            alert(pic_dsply.src);
             pic_dsply.src = profile.getImageUrl();
-            alert(pic_dsply.src);
         }
 
         function signOut() {
@@ -151,7 +149,7 @@
         <article id="profile">
             <div id="profile_info">
                 <div id="usrnam_dsply"> User: No user signed in </div>
-                <img src="./img/question_mark.png" alt="problem loading question mark image" style="border-radius: 50%;" height="100"> 
+                <img id="pic_dsply" src="./img/question_mark.png" alt="problem loading question mark image" style="border-radius: 50%;" height="100"> 
             </div>
             
             Here you can sign out : <br>
