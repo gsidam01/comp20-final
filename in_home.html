@@ -15,6 +15,8 @@
     <script src="https://apis.google.com/js/platform.js" async defer> </script>
     <meta name="google-signin-client_id" content="626801578575-9sccles7mtgc3mvags82u65c2n0pfv9k.apps.googleusercontent.com">
     <script type="text/javascript">
+        var the_users_email;
+
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
             //console.log('ID: ' + profile.getId()); 
@@ -23,6 +25,7 @@
             //console.log('Image URL: ' + profile.getImageUrl());
             //console.log('Email: ' + profile.getEmail()); 
             // This is null if the 'email' scope is not present.
+            the_users_email = profile.getEmail();
             var usrnam_dsply = document.getElementById("usrnam_dsply");
             usrnam_dsply.innerHTML = "User: " + profile.getName();
             var pic_dsply = document.getElementById("pic_dsply");
@@ -35,6 +38,7 @@
                 console.log('User signed out.');
             });
 
+            the_users_email = "";
             var usrnam_dsply = document.getElementById("usrnam_dsply");
             usrnam_dsply.innerHTML = "User: No user signed in";
             var pic_dsply = document.getElementById("pic_dsply");
@@ -272,3 +276,5 @@
     </div>
     <img src="./img/compass.png" alt="Logo for Monaco's Map" height="130" style="margin-right: 40px" >
 </footer>
+
+<iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
