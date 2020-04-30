@@ -29,6 +29,8 @@ var httpServer = http.createServer(function (req, res) {
                     if (url_parts.pathname == "/add_a_friend") {
                         usr_email = url_parts.query.usr_email;
                         friend_email = url_parts.query.friend_email;
+                        console.log("User email" + usr_email);
+                        console.log("Friend email" + friend_email);
                     } else if (url_parts.pathname == "/log_location") {
 
                     }

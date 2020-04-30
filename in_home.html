@@ -71,9 +71,9 @@
             open_map();
         }
 
-        function submit_friend(event) {
-
-                friend_email = document.getElementById("add_friend_form").value;
+        function submit_friend() {
+                friend_email = document.getElementById("add_friend_text").value;
+                alert(friend_email);
                 if (friend_email == "") {
                     alert("friend email is required");
                 } else {
@@ -94,12 +94,8 @@
                     request.send();
                 }
                 
-                event.preventDefault();
+                return false;
             }
-
-            function attachFormSubmitEvent(formId) {
-                document.getElementById("add_friend_form").addEventListener("submit", submit_friend);
-            }               
     </script>
 
 
@@ -312,8 +308,8 @@
 
         <article id="add_friend" >
             <div style="font-family: 'Parchment'; font-size: 60pt;">Find a friend</div> 
-            <form id="add_friend_form">
-                Enter your friend's gmail: &nbsp &nbsp <input type="text" name="add_a_friend"> 
+            <form id="add_friend_form" onsubmit="return submit_friend();">
+                Enter your friend's gmail: &nbsp &nbsp <input type="text" name="add_a_friend" id="add_friend_text"> 
 
                 <input type="submit" value="Submit">
             </form>
