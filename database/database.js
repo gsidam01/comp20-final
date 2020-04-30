@@ -2,31 +2,40 @@ const MongoClient = require('mongodb').MongoClient;
 
 const url = "mongodb+srv://gabman15:KVUSknDeCOb9@cluster0-amdd2.mongodb.net/test?retryWrites=true&w=majority";
 
-async function addPerson(email, name, callback) {
-    MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, db) {
+function addPerson(email, name, callback) {
+    MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
 	if(err) {
 	    return console.log(err);
 	}
 
 	var dbo = db.db("MonacoMap");
 	var ppl = dbo.collection("People");
-	var newPerson = {"email": email, "name": name,
-			 "location": null, "time_start": null,
-			 "time_end": null, "friends": []};
-	ppl.insertOne(newPerson, function(err, res) {
-	    if (err) {
-		console.log ("Error: " + err);
+	ppl.find({"email":email},{}).toArray(function(err,res) {
+	    if(res.length > 0) {
+		console.log("Person already in database");
+		db.close();
+		callback();
 		return;
+	    } else {
+		var newPerson = {"email": email, "name": name,
+				 "location": null, "time_start": null,
+				 "time_end": null, "friends": []};
+		ppl.insertOne(newPerson, function(err, res) {
+		    if (err) {
+			console.log ("Error: " + err);
+			return;
+		    }
+		    console.log(name+ " was inserted into the database!");
+		    db.close();
+		    callback();
+		});
 	    }
-	    console.log(name+ " was inserted into the database!");
-	    db.close();
-	    callback();
-	});
+	});	
     });
 }
 
-async function addFriend(email, friendEmail) {
-    MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, db) {
+function addFriend(email, friendEmail, callback) {
+    MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
 	if(err) {
 	    return console.log(err);
 	}
@@ -36,6 +45,12 @@ async function addFriend(email, friendEmail) {
 	ppl.findOne(
 	    {"email": friendEmail},
 	    function(err,result) {
+		if(!result) {
+		    console.log("No one with that email");
+		    db.close();
+		    callback();
+		    return;
+		}
 		var friend = result;
 		console.log(friend.email);
 		ppl.updateOne(
@@ -49,6 +64,7 @@ async function addFriend(email, friendEmail) {
 		    }
 		).then (function() {
 		    db.close();
+		    callback();
 		});
 		console.log("Succesfully added friend to " + email);
 	    }
@@ -56,8 +72,8 @@ async function addFriend(email, friendEmail) {
     });
 }
 
-async function removeAllPeople() {
-    MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, db) {
+async function removeAllPeople(callback) {
+    MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
 	if(err) {
 	    return console.log(err);
 	}
@@ -71,12 +87,13 @@ async function removeAllPeople() {
 	    }
 	    console.log("All people were removed from the database!");
 	    db.close();
+	    callback();
 	});
     });
 }
 
-function updatePerson(email, location, timeStart, timeEnd) {
-    MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, db) {
+function updatePerson(email, location, timeStart, timeEnd, callback) {
+    MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
 	if(err) {
 	    return console.log(err);
 	}
@@ -93,12 +110,13 @@ function updatePerson(email, location, timeStart, timeEnd) {
 	    }
 	    console.log("Successfully updated "+email+" to be at "+location);
 	    db.close();
+	    callback();
 	});
     });
 }
 
-function getFriendInfo(email) {
-    MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, db) {
+function getFriendInfo(email, callback) {
+    MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
 	if(err) {
 	    return console.log(err);
 	}
@@ -114,48 +132,34 @@ function getFriendInfo(email) {
 		return;
 	    }
 	    var friends = res.friends;
-	    ppl.find({"email": {$in : friends}},
+	    var query = {$and: [ {"email": {$in : friends}}, {"location": {$ne: null}} ] }
+	    ppl.find(query,
 		     {projection:{"_id":0,"name":1,"location":1,"time_end":1}}).toArray(function(err,res) {
 			 if (err) {
 			     console.log ("Error: " + err);
 			     return;
 			 }
-			 //console.log(res);
-			 //var friendInfoText = '{"friends" : []}';
 			 var friendInfo = JSON.parse('{"friends" : []}');
 			 friendInfo.friends = res;
 			 console.log(friendInfo);
 			 db.close();
+			 callback();
 		     }
 	    );
-	    /*var friendInfoText = "{'friends' : []}";
-	      var friendInfo = JSON.parse(friendInfoText);*/
-	    /*for (i=0;i < friends.length;i++) {
-		console.log("Finding "+friends[i]);
-		ppl.findOne({"email":friends[i]}, function(err, res) {
-		    if (err) {
-			console.log ("Error: " + err);
-			return;
-		    }
-		    
-		});
-	    }*/
-	    //console.log("Successfully updated "+email+" to be at "+location);
-	    //console.log(friends);
-
 	});
     });
 }
 
 async function main()
 {
-    //addPerson("matoro@gmail.com","Toa Matoro", function() {});
-    //removeAllPeople();
+    //addPerson("nuparu@gmail.com","Toa Nuparu", function() {});
+    //removeAllPeople(function(){});
     //addPerson("tahu@gmail.com","Tahu Nuva",function() {});
-    //    addFriend("tahu@gmail.com","matoro@gmail.com");
+    addFriend("tahu@gmail.com","test", function() {});
     //});
-    //updatePerson("matoro@gmail.com","Karda Nui","15:30","16:30");
-    getFriendInfo("tahu@gmail.com");
+    //updatePerson("matoro@gmail.com","Karda Nui","15:30","16:30", function(){});
+//	getFriendInfo("tahu@gmail.com",function(){});
+    //});
 }
 
 main();
