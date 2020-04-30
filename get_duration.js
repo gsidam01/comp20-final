@@ -1,4 +1,4 @@
-function get_time(duration_hours_string, duration_minutes_string, time_hours_string, time_minutes_string, am){
+function get_duration(duration_hours_string, duration_minutes_string, time_hours_string, time_minutes_string, am){
   let duration_hours = parseInt(duration_hours_string);
   let duration_minutes = parseInt(duration_minutes_string);
   let time_hours = parseInt(time_hours_string);
