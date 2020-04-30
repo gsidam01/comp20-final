@@ -74,44 +74,67 @@ function addFriend(email, friendEmail, callback) {
 
 async function removeAllPeople(callback) {
     MongoClient.connect(mongo_url, { useUnifiedTopology: true }, function(err, db) {
-	if(err) {
-	    return console.log(err);
-	}
+    	if(err) {
+    	    return console.log(err);
+    	}
 
-	var dbo = db.db("MonacoMap");
-	var ppl = dbo.collection("People");
-	ppl.deleteMany({}, function(err, res) {
-	    if (err) {
-		console.log ("Error: " + err);
-		return;
-	    }
-	    console.log("All people were removed from the database!");
-	    db.close();
-	    callback();
-	});
+    	var dbo = db.db("MonacoMap");
+    	var ppl = dbo.collection("People");
+    	ppl.deleteMany({}, function(err, res) {
+    	    if (err) {
+    		console.log ("Error: " + err);
+    		return;
+    	    }
+    	    console.log("All people were removed from the database!");
+    	    db.close();
+    	    callback();
+    	});
+    });
+}
+
+async function checkTimes(currTime, callback) {
+    MongoClient.connect(mongo_url, { useUnifiedTopology: true }, function(err, db) {
+    	if(err) {
+    	    return console.log(err);
+    	}
+
+    	var dbo = db.db("MonacoMap");
+    	var ppl = dbo.collection("People");
+
+    	var query = {"time_end": {$lt : currTime}};
+    	var vals = {$set: {"location":null, "time_start":null, "time_end":null}};
+    	ppl.updateOne(query, vals, function(err, res) {
+    	    if (err) {
+    		console.log ("Error: " + err);
+    		return;
+    	    }
+    	    //console.log("Successfully updated "+email+" to be at "+location);
+    	    db.close();
+    	    callback();
+    	});
     });
 }
 
 function updatePerson(email, location, timeStart, timeEnd, callback) {
     MongoClient.connect(mongo_url, { useUnifiedTopology: true }, function(err, db) {
-	if(err) {
-	    return console.log(err);
-	}
+    	if(err) {
+    	    return console.log(err);
+    	}
 
-	var dbo = db.db("MonacoMap");
-	var ppl = dbo.collection("People");
+    	var dbo = db.db("MonacoMap");
+    	var ppl = dbo.collection("People");
 
-	var query = {"email":email};
-	var vals = {$set: {"location":location, "time_start":timeStart, "time_end":timeEnd}};
-	ppl.updateOne(query, vals, function(err, res) {
-	    if (err) {
-		console.log ("Error: " + err);
-		return;
-	    }
-	    console.log("Successfully updated "+email+" to be at "+location);
-	    db.close();
-	    callback();
-	});
+    	var query = {"email":email};
+    	var vals = {$set: {"location":location, "time_start":timeStart, "time_end":timeEnd}};
+    	ppl.updateOne(query, vals, function(err, res) {
+    	    if (err) {
+    		console.log ("Error: " + err);
+    		return;
+    	    }
+    	    console.log("Successfully updated "+email+" to be at "+location);
+    	    db.close();
+    	    callback();
+    	});
     });
 }
 
@@ -153,11 +176,12 @@ function getFriendInfo(email, callback) {
 async function main()
 {
     //addPerson("nuparu@gmail.com","Toa Nuparu", function() {});
-    //addFriend("milesizydorczak@gmail.com","tahu@gmail.com",function(){});
+    addFriend("milesizydorczak@gmail.com","matoro@gmail.com",function(){});
     //addPerson("tahu@gmail.com","Tahu Nuva",function() {});
     //addFriend("tahu@gmail.com","test", function() {});
     //});
-    updatePerson("tahu@gmail.com","Dewick","15:30","16:30", function(){});
+    //updatePerson("tahu@gmail.com","Dewick",1530,1630, function(){});
+    //checkTimes(1730,function(){});
 //	getFriendInfo("tahu@gmail.com",function(){});
     //});
 }
