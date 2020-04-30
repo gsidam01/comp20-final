@@ -16,6 +16,7 @@
     <meta name="google-signin-client_id" content="626801578575-9sccles7mtgc3mvags82u65c2n0pfv9k.apps.googleusercontent.com">
     <script type="text/javascript">
         var the_users_email;
+        var the_users_name;
 
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
@@ -26,23 +27,36 @@
             //console.log('Email: ' + profile.getEmail()); 
             // This is null if the 'email' scope is not present.
             the_users_email = profile.getEmail();
+            the_users_name = profile.getName();
             var usrnam_dsply = document.getElementById("usrnam_dsply");
             usrnam_dsply.innerHTML = "User: " + profile.getName();
             var pic_dsply = document.getElementById("pic_dsply");
             pic_dsply.src = profile.getImageUrl();
 
             // now populate all of the friends
-            var url = "http://localhost:8080/get_friend_data";
-            alert("!");
+            load_friends_from_server();
+
+        }
+
+        function load_friends_from_server()
+        {
+            var url = "http://localhost:8080/get_friend_data?usr_email="; 
+            url += the_users_email + "&usr_name=" + the_users_name;
+            console.log("url" + url);
             var request = new XMLHttpRequest();
             request.open('GET', url, true);
-            request.onload = function() {
-                alert(request.responseText);
-                console.log(request.responseText);
+            request.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    raw_data = this.responseText;
+                    console.log(raw_data);
+                    raw_data = raw_data.substring(raw_data.indexOf("{"));
+                    json_obj = JSON.parse(raw_data);
+                    insert_friends_data(json_obj);
+                } else if (this.readyState == 4) {
+                    alert("Error");
+                }
             }
-            request.onerror = function() {
-                console.log("Error loading friends");
-            }
+            request.send();
         }
 
         function signOut() {
@@ -243,7 +257,7 @@
             <img src="./img/tufts_students.jpg" width="100%">
 
 	    	<h2>hehehe FRAAANDZ</h2>
-	        <input type="button" value="loadfriends" onclick="insert_friends_data()"> //get rid of this eventually, have this function called when we log in
+	        <input type="button" value="loadfriends" onclick="load_friends_from_server()"> //get rid of this eventually, have this function called when we log in
                 <!-- This is where the data from the database needs to go -->
                 <!-- ideally, we list the locations on the left alphabetically and then on the right we have the friends who are there -->
                 <!-- <div class="people"></div> -->
