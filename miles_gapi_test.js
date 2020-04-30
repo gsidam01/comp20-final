@@ -4,8 +4,10 @@ const MongoClient = require('mongodb').MongoClient;
 const mongo_url = "mongodb+srv://gabman15:KVUSknDeCOb9@cluster0-amdd2.mongodb.net/test?retryWrites=true&w=majority";
 const port = process.env.PORT || 8080;
 
+var friend_succesful = false;
+
 var httpServer = http.createServer(function (req, res) {
-        console.log("Request url" + req.url);
+        console.log("Request url: " + req.url);
         url_parts = url.parse(req.url, true);
         switch (req.method) {
             case "GET":
@@ -25,12 +27,25 @@ var httpServer = http.createServer(function (req, res) {
                 }
                 break;
             case "POST":
-                console.log("Request url" + req.url);
                     if (url_parts.pathname == "/add_a_friend") {
                         usr_email = url_parts.query.usr_email;
                         friend_email = url_parts.query.friend_email;
-                        console.log("User email" + usr_email);
-                        console.log("Friend email" + friend_email);
+                        console.log("User email: " + usr_email);
+                        console.log("Friend email: " + friend_email);
+                        friend_succesful = false;
+                        addFriend(usr_email, friend_email, function() {
+                            res.writeHead(200, {'Content-Type': 'text/html', 'Access-Control-Allow-Origin': '*'});
+                            if (friend_succesful) {
+                                res.write("#success");
+                            } else {
+                                res.write("#failure");
+                            }
+                            
+        
+                            res.end();
+                            
+                        });
+
                     } else if (url_parts.pathname == "/log_location") {
 
                     }
@@ -88,6 +103,7 @@ function addFriend(email, friendEmail, callback) {
         function(err,result) {
         if(!result) {
             console.log("No one with that email");
+            friend_succesful = false;
             db.close();
             callback();
             return;
@@ -105,6 +121,7 @@ function addFriend(email, friendEmail, callback) {
             }
         ).then (function() {
             db.close();
+            friend_succesful = true;
             callback();
         });
         console.log("Succesfully added friend to " + email);

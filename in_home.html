@@ -85,7 +85,12 @@
                         if (this.readyState == 4 && this.status == 200) {
                             raw_data = this.responseText;
                             console.log(raw_data);
-                            // raw_data = raw_data.substring(raw_data.indexOf("{"));
+                            raw_data = raw_data.substring(raw_data.indexOf("#"));
+                            if (raw_data == "#success") {
+                                alert("Successfully added a friend");
+                            } else if (raw_data == "#failure") {
+                                alert("Could not add this friend");
+                            }
                             // json_obj = JSON.parse(raw_data);
                         } else if (this.readyState == 4) {
                             alert("Error");
