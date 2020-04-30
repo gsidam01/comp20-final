@@ -7,49 +7,61 @@ const port = process.env.PORT || 8080;
 var friend_succesful = false;
 
 var httpServer = http.createServer(function (req, res) {
-        console.log("Request url: " + req.url);
-        url_parts = url.parse(req.url, true);
-        switch (req.method) {
-            case "GET":
-                if (url_parts.pathname == "/get_friend_data") {
+    console.log("Request url: " + req.url);
+    url_parts = url.parse(req.url, true);
+    switch (req.method) {
+        case "GET":
+            if (url_parts.pathname == "/get_friend_data") {
+                usr_email = url_parts.query.usr_email;
+                usr_name = url_parts.query.usr_name;
+                console.log(usr_email);
+                addPerson(usr_email, usr_name, function () {
+                    getFriendInfo(usr_email, function(friendInfo) {
+                        response_string = JSON.stringify(friendInfo);
+                        res.writeHead(200, {'Content-Type': 'text/html', 'Access-Control-Allow-Origin': '*'});
+                        res.write("A get method was requested\n");
+                        res.write(response_string);
+                        res.end();
+                    });
+                });
+            }
+            break;
+        case "POST":
+                if (url_parts.pathname == "/add_a_friend") {
                     usr_email = url_parts.query.usr_email;
-                    usr_name = url_parts.query.usr_name;
-                    console.log(usr_email);
-                    addPerson(usr_email, usr_name, function () {
-                        getFriendInfo(usr_email, function(friendInfo) {
-                            response_string = JSON.stringify(friendInfo);
-                            res.writeHead(200, {'Content-Type': 'text/html', 'Access-Control-Allow-Origin': '*'});
-                            res.write("A get method was requested\n");
-                            res.write(response_string);
-                            res.end();
-                        });
+                    friend_email = url_parts.query.friend_email;
+                    console.log("User email: " + usr_email);
+                    console.log("Friend email: " + friend_email);
+                    friend_succesful = false;
+                    addFriend(usr_email, friend_email, function() {
+                        res.writeHead(200, {'Content-Type': 'text/html', 'Access-Control-Allow-Origin': '*'});
+                        if (friend_succesful) {
+                            res.write("#success");
+                        } else {
+                            res.write("#failure");
+                        }
+                        res.end();
+                    });
+                } else if (url_parts.pathname == "/log_location") {
+                    usr_email = url_parts.query.usr_email;
+                    location = url_parts.query.location;
+                    time_start = url_parts.query.time_start;
+                    time_end = url_parts.query.time_end;
+                    console.log("User email: " + usr_email);
+                    console.log("User location: " + location);
+                    console.log("Start time: " + time_start);
+                    console.log("End time: " + time_end);
+                    updatePerson(usr_email, location, time_start, time_end, function() {
+                        res.writeHead(200, {'Content-Type': 'text/html', 'Access-Control-Allow-Origin': '*'});
+                        res.write("Succesfully updated time");
+                        console.log("Succesfully updated time");
+                        res.end();
                     });
                 }
-                break;
-            case "POST":
-                    if (url_parts.pathname == "/add_a_friend") {
-                        usr_email = url_parts.query.usr_email;
-                        friend_email = url_parts.query.friend_email;
-                        console.log("User email: " + usr_email);
-                        console.log("Friend email: " + friend_email);
-                        friend_succesful = false;
-                        addFriend(usr_email, friend_email, function() {
-                            res.writeHead(200, {'Content-Type': 'text/html', 'Access-Control-Allow-Origin': '*'});
-                            if (friend_succesful) {
-                                res.write("#success");
-                            } else {
-                                res.write("#failure");
-                            }
-                            res.end();
-                        });
-                    } else if (url_parts.pathname == "/log_location") {
-
-                    }
-                break;
-            default:
-                break;
-        }
-
+            break;
+        default:
+            break;
+    }
 });
 
 httpServer.listen(port); 

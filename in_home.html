@@ -102,7 +102,20 @@
 
         function submit_location() 
         {
-            
+            var url = "http://localhost:8080/log_location?usr_email=";
+            url += the_users_email + "&location=" + document.map_form.location.value;
+            url += "&time_start=" + current_time + "&time_end" + time_end;
+            var request = new XMLHttpRequest();
+            request.open('POST', url, true);
+            request.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    raw_data = this.responseText;
+                    console.log(raw_data);
+                } else if (this.readyState == 4) {
+                    alert("Error updating location");
+                }
+            }
+            request.send();
         }
 
     </script>
