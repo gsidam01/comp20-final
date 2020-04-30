@@ -30,7 +30,7 @@ function addPerson(email, name, callback) {
 		    callback();
 		});
 	    }
-	});	
+	});
     });
 }
 
@@ -153,11 +153,11 @@ function getFriendInfo(email, callback) {
 async function main()
 {
     //addPerson("nuparu@gmail.com","Toa Nuparu", function() {});
-    removeAllPeople(function(){});
+    //addFriend("milesizydorczak@gmail.com","tahu@gmail.com",function(){});
     //addPerson("tahu@gmail.com","Tahu Nuva",function() {});
     //addFriend("tahu@gmail.com","test", function() {});
     //});
-    //updatePerson("matoro@gmail.com","Karda Nui","15:30","16:30", function(){});
+    updatePerson("tahu@gmail.com","Dewick","15:30","16:30", function(){});
 //	getFriendInfo("tahu@gmail.com",function(){});
     //});
 }
