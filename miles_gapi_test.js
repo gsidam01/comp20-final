@@ -7,7 +7,8 @@ var httpServer = http.createServer(function (req, res) {
             case "GET":
                 console.log("Request url" + req.url);
                 res.writeHead(200, {'Content-Type': 'text/html'});
-                    res.write("A get method was requested");
+                    res.write("A get method was requested\n");
+                    res.write(req.url);
 
                 res.end("ended response.");
                 break;
