@@ -102,7 +102,7 @@ function addFriend(email, friendEmail, callback) {
         {"email": friendEmail},
         function(err,result) {
         if(!result) {
-            console.log("No one with that email");
+            console.log("No one with that emaisl");
             friend_succesful = false;
             db.close();
             callback();
@@ -129,6 +129,7 @@ function addFriend(email, friendEmail, callback) {
     );
     });
 }
+
 
 async function removeAllPeople(callback) {
     MongoClient.connect(mongo_url, { useUnifiedTopology: true }, function(err, db) {

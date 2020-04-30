@@ -79,7 +79,7 @@
                     alert("friend email is required");
                 } else {
                     var url = "http://localhost:8080/add_a_friend?usr_email=";
-                    url += the_users_name + "&friend_email=" + friend_email;
+                    url += the_users_email + "&friend_email=" + friend_email;
                     var request = new XMLHttpRequest();
                     request.open('POST', url, true);
                     request.onreadystatechange = function() {
