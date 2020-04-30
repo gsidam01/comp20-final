@@ -1,27 +1,27 @@
-var returned_from_server = {
-	"friends": [
-		{
-			"name": "Toa",
-			"location": "Tooa's place",
-			"time_start": "15:30",
-			"time_end": "16:30"
-		},
-		{
-			"name": "Miles",
-			"location": "Kilometer",
-			"time_start": "10:30",
-			"time_end": "19:00"
-		},
-		{
-			"name": "George",
-			"location": "Whooooaoaa",
-			"time_start": "00:00",
-			"time_end": "20:00"
-		}
-	]
-}
+// var returned_from_server = {
+// 	"friends": [
+// 		{
+// 			"name": "Toa",
+// 			"location": "Tooa's place",
+// 			"time_start": "15:30",
+// 			"time_end": "16:30"
+// 		},
+// 		{
+// 			"name": "Miles",
+// 			"location": "Kilometer",
+// 			"time_start": "10:30",
+// 			"time_end": "19:00"
+// 		},
+// 		{
+// 			"name": "George",
+// 			"location": "Whooooaoaa",
+// 			"time_start": "00:00",
+// 			"time_end": "20:00"
+// 		}
+// 	]
+// }
 
-function insert_friends_data()
+function insert_friends_data(returned_from_server)
 {
 	var ret_obj = returned_from_server;
 	// var ret_obj = JSON.parse(returned_from_server); my local variable is already json, otherwise it would need to be parsed

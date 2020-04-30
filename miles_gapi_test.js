@@ -2,6 +2,7 @@ const http = require('http');
 const url = require("url");
 const MongoClient = require('mongodb').MongoClient;
 const mongo_url = "mongodb+srv://gabman15:KVUSknDeCOb9@cluster0-amdd2.mongodb.net/test?retryWrites=true&w=majority";
+const port = process.env.PORT || 8080;
 
 var httpServer = http.createServer(function (req, res) {
         console.log("Request url" + req.url);
@@ -17,7 +18,7 @@ var httpServer = http.createServer(function (req, res) {
                             response_string = JSON.stringify(friendInfo);
                             res.writeHead(200, {'Content-Type': 'text/html', 'Access-Control-Allow-Origin': '*'});
                             res.write("A get method was requested\n");
-                            res.write(friendInfo);
+                            res.write(response_string);
                             res.end();
                         });
                     });
@@ -32,14 +33,14 @@ var httpServer = http.createServer(function (req, res) {
 
 });
 
-httpServer.listen(8080); 
+httpServer.listen(port); 
 
 function addPerson(email, name, callback) {
     MongoClient.connect(mongo_url, { useUnifiedTopology: true }, function(err, db) {
     if(err) {
         return console.log(err);
     }
-
+    console.log("made it");
     var dbo = db.db("MonacoMap");
     var ppl = dbo.collection("People");
     ppl.find({"email":email},{}).toArray(function(err,res) {
@@ -173,7 +174,7 @@ function getFriendInfo(email, callback) {
              }
              var friendInfo = JSON.parse('{"friends" : []}');
              friendInfo.friends = res;
-             console.log(friendInfo);
+
              db.close();
              callback(friendInfo);
              }

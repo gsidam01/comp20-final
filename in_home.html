@@ -35,6 +35,7 @@
 
             // now populate all of the friends
             load_friends_from_server();
+
         }
 
         function load_friends_from_server()
@@ -48,8 +49,9 @@
                 if (this.readyState == 4 && this.status == 200) {
                     raw_data = this.responseText;
                     console.log(raw_data);
-                    // raw_data = raw_data.substring(raw_data.indexOf("{"));
-                    // json_obj = JSON.parse(raw_data);
+                    raw_data = raw_data.substring(raw_data.indexOf("{"));
+                    json_obj = JSON.parse(raw_data);
+                    insert_friends_data(json_obj);
                 } else if (this.readyState == 4) {
                     alert("Error");
                 }
