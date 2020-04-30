@@ -40,8 +40,6 @@ var httpServer = http.createServer(function (req, res) {
                             } else {
                                 res.write("#failure");
                             }
-                            
-        
                             res.end();
                             
                         });
