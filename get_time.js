@@ -27,5 +27,5 @@ function get_time(){
   // else{
     duration_hours += 12;
   //}
-  return duration_hours;
+  return duration_hours, duration_minutes;
   }
