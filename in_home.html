@@ -32,7 +32,8 @@
             pic_dsply.src = profile.getImageUrl();
 
             // now populate all of the friends
-            var url = "http://localhost:8080/get_friend_data"
+            var url = "http://localhost:8080/get_friend_data";
+            alert("!");
             var request = new XMLHttpRequest();
             request.open('GET', url, true);
             request.onload = function() {
