@@ -1,5 +1,5 @@
 {
-  "name": "monaco_map_database",
+  "name": "monacomapdatabase",
   "version": "1.0.0",
   "description": "Database to store people for the Monaco Map",
   "main": "database.js",

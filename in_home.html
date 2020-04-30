@@ -35,7 +35,6 @@
 
             // now populate all of the friends
             load_friends_from_server();
-
         }
 
         function load_friends_from_server()
@@ -49,9 +48,8 @@
                 if (this.readyState == 4 && this.status == 200) {
                     raw_data = this.responseText;
                     console.log(raw_data);
-                    raw_data = raw_data.substring(raw_data.indexOf("{"));
-                    json_obj = JSON.parse(raw_data);
-                    insert_friends_data(json_obj);
+                    // raw_data = raw_data.substring(raw_data.indexOf("{"));
+                    // json_obj = JSON.parse(raw_data);
                 } else if (this.readyState == 4) {
                     alert("Error");
                 }
@@ -228,13 +226,13 @@
 	    <div id="map">
             <article>
                 <form class="map_form" name="map_form" onsubmit="return validate_map_form();">
-                    Where are you? &nbsp &nbsp <input type="text" name="location" onfocus="clear_text();" > <br>
+                    Where are you? &nbsp &nbsp <input type="text" id="location" name="location" onfocus="clear_text();" > <br>
 
-                    How long will you be there? &nbsp &nbsp Hours:&nbsp<input type="text" name="duration_hours" style="width: 60px;"> &nbsp Minutes:&nbsp<input type="text" name="duration_minutes" style="width: 60px;"> <br>
+                    How long will you be there? &nbsp &nbsp Hours:&nbsp<input type="text" name="duration_hours" id="duration_hours" style="width: 60px;"> &nbsp Minutes:&nbsp<input type="text" name="duration_minutes" id="duration_minutes" style="width: 60px;"> <br>
 
                     <div style="margin-left: 150px; font-style: normal; font-size:50pt; font-family: 'Parchment'; margin-top: -10px;"> or </div> 
 
-                    When will you leave? &nbsp &nbsp <input type="text" name="time_hours" style="width: 60px">:<input type="text" name="time_minutes" style="width: 60px">
+                    When will you leave? &nbsp &nbsp <input type="text" name="time_hours" id="time_hours" style="width: 60px">:<input type="text" name="time_minutes" id="time_minutes" style="width: 60px">
                     <label class="radio_container">
                         <input type="radio" name="am_or_pm" value="am" checked> 
                         <span class="checkmark"> </span> am
@@ -248,6 +246,7 @@
                     <input type="submit" name="submit">
                 </form>
             </article>
+		    
 
             <div id="map_images"> 
 
