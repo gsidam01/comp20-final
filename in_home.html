@@ -72,6 +72,36 @@
             pic_dsply.src = "./img/question_mark.png";
             open_map();
         }
+
+        function submit_friend(event) {
+
+                friend_email = document.getElementById("add_friend_form").value;
+                if (friend_email == "") {
+                    alert("friend email is required");
+                } else {
+                    var url = "http://localhost:8080/add_a_friend?usr_email=";
+                    url += the_users_name + "&friend_email=" + friend_email;
+                    var request = new XMLHttpRequest();
+                    request.open('POST', url, true);
+                    request.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            raw_data = this.responseText;
+                            console.log(raw_data);
+                            // raw_data = raw_data.substring(raw_data.indexOf("{"));
+                            // json_obj = JSON.parse(raw_data);
+                        } else if (this.readyState == 4) {
+                            alert("Error");
+                        }
+                    }
+                    request.send();
+                }
+                
+                event.preventDefault();
+            }
+
+            function attachFormSubmitEvent(formId) {
+                document.getElementById("add_friend_form").addEventListener("submit", submit_friend);
+            }               
     </script>
 
 
@@ -279,9 +309,11 @@
             <div id="signout_button" onclick="signOut();"> Sign Out</div>
         </article>
 
-        <article id="add_friend">
+       
+
+        <article id="add_friend" >
             <div style="font-family: 'Parchment'; font-size: 60pt;">Find a friend</div> 
-            <form>
+            <form id="add_friend_form">
                 Enter your friend's gmail: &nbsp &nbsp <input type="text" name="add_a_friend"> 
 
                 <input type="submit" value="Submit">
