@@ -1,9 +1,9 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const url = "mongodb+srv://gabman15:KVUSknDeCOb9@cluster0-amdd2.mongodb.net/test?retryWrites=true&w=majority";
+const mongo_url = "mongodb+srv://gabman15:KVUSknDeCOb9@cluster0-amdd2.mongodb.net/test?retryWrites=true&w=majority";
 
 function addPerson(email, name, callback) {
-    MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    MongoClient.connect(mongo_url, { useUnifiedTopology: true }, function(err, db) {
 	if(err) {
 	    return console.log(err);
 	}
@@ -35,7 +35,7 @@ function addPerson(email, name, callback) {
 }
 
 function addFriend(email, friendEmail, callback) {
-    MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    MongoClient.connect(mongo_url, { useUnifiedTopology: true }, function(err, db) {
 	if(err) {
 	    return console.log(err);
 	}
@@ -73,7 +73,7 @@ function addFriend(email, friendEmail, callback) {
 }
 
 async function removeAllPeople(callback) {
-    MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    MongoClient.connect(mongo_url, { useUnifiedTopology: true }, function(err, db) {
 	if(err) {
 	    return console.log(err);
 	}
@@ -93,7 +93,7 @@ async function removeAllPeople(callback) {
 }
 
 function updatePerson(email, location, timeStart, timeEnd, callback) {
-    MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    MongoClient.connect(mongo_url, { useUnifiedTopology: true }, function(err, db) {
 	if(err) {
 	    return console.log(err);
 	}
@@ -116,7 +116,7 @@ function updatePerson(email, location, timeStart, timeEnd, callback) {
 }
 
 function getFriendInfo(email, callback) {
-    MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    MongoClient.connect(mongo_url, { useUnifiedTopology: true }, function(err, db) {
 	if(err) {
 	    return console.log(err);
 	}
