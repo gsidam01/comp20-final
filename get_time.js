@@ -6,7 +6,7 @@ function get_time(){
   let duration_minutes = getElementById(duration_minutes);
   let time_hours = getElementById(time_hours);
   let time_minutes = getElementById(time_minutes);
-  if ((duration_hours > 12) || (time_hours > 12)){
+  if (time_hours > 12){
     console.log("Error, hours must be in am/pm format\n");
   //if (pm)
   time_hours += 12;
