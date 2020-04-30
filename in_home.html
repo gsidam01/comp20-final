@@ -30,6 +30,18 @@
             usrnam_dsply.innerHTML = "User: " + profile.getName();
             var pic_dsply = document.getElementById("pic_dsply");
             pic_dsply.src = profile.getImageUrl();
+
+            // now populate all of the friends
+            var url = "http://localhost:8080/get_friend_data"
+            var request = new XMLHttpRequest();
+            request.open('GET', url, true);
+            request.onload = function() {
+                alert(request.responseText);
+                console.log(request.responseText);
+            }
+            request.onerror = function() {
+                console.log("Error loading friends");
+            }
         }
 
         function signOut() {
