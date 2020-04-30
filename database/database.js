@@ -153,9 +153,9 @@ function getFriendInfo(email, callback) {
 async function main()
 {
     //addPerson("nuparu@gmail.com","Toa Nuparu", function() {});
-    //removeAllPeople(function(){});
+    removeAllPeople(function(){});
     //addPerson("tahu@gmail.com","Tahu Nuva",function() {});
-    addFriend("tahu@gmail.com","test", function() {});
+    //addFriend("tahu@gmail.com","test", function() {});
     //});
     //updatePerson("matoro@gmail.com","Karda Nui","15:30","16:30", function(){});
 //	getFriendInfo("tahu@gmail.com",function(){});
