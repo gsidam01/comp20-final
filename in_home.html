@@ -52,7 +52,7 @@
                     json_obj = JSON.parse(raw_data);
                     insert_friends_data(json_obj);
                 } else if (this.readyState == 4) {
-                    alert("Error");
+                    alert("Error reading in user's friends");
                 }
             }
             request.send();
@@ -69,12 +69,13 @@
             usrnam_dsply.innerHTML = "User: No user signed in";
             var pic_dsply = document.getElementById("pic_dsply");
             pic_dsply.src = "./img/question_mark.png";
+            document.getElementById("friends_pop_here").innerHTML = "";
+            document.getElementsById("no_user_signed_in").innerHTML = "No user signed in";
             open_map();
         }
 
         function submit_friend() {
                 friend_email = document.getElementById("add_friend_text").value;
-                alert(friend_email);
                 if (friend_email == "") {
                     alert("friend email is required");
                 } else {
@@ -92,12 +93,12 @@
                             } else if (raw_data == "#failure") {
                                 alert("Could not add this friend");
                             }
-                            // json_obj = JSON.parse(raw_data);
                         } else if (this.readyState == 4) {
-                            alert("Error");
+                            alert("Error adding a friend to database");
                         }
                     }
                     request.send();
+                    document.getElementById("add_friend_text").value = "";
                 }
                 
                 return false;
@@ -287,15 +288,13 @@
 
             <img src="./img/tufts_students.jpg" width="100%">
 
-	    	<h2>hehehe FRAAANDZ</h2>
-	        <input type="button" value="loadfriends" onclick="load_friends_from_server()"> //get rid of this eventually, have this function called when we log in
+	    	<h2>Your Friends</h2> 
                 <!-- This is where the data from the database needs to go -->
                 <!-- ideally, we list the locations on the left alphabetically and then on the right we have the friends who are there -->
                 <!-- <div class="people"></div> -->
 	    	<section id="locations">
-                <table id="friends_pop_here">
-			
-                </table>
+                <table id="friends_pop_here" style="width: 100%"> </table>
+                <div id="no_user_signed_in"> No user signed in</div>
 	    	</section>
 
 	    </article>

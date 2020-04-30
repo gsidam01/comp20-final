@@ -41,9 +41,7 @@ var httpServer = http.createServer(function (req, res) {
                                 res.write("#failure");
                             }
                             res.end();
-                            
                         });
-
                     } else if (url_parts.pathname == "/log_location") {
 
                     }
