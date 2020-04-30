@@ -1,4 +1,5 @@
-function get_time(){
+function get_time()
+{
   let today = new Date();
   let current_hours = today.getHours();
   let current_minutes = today.getMinutes();
@@ -29,3 +30,4 @@ function get_time(){
   //}
   return duration_hours;
   }
+

@@ -20,12 +20,6 @@
 
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
-            //console.log('ID: ' + profile.getId()); 
-            // Do not send to your backend! Use an ID token instead.
-            //console.log('Name: ' + profile.getName());
-            //console.log('Image URL: ' + profile.getImageUrl());
-            //console.log('Email: ' + profile.getEmail()); 
-            // This is null if the 'email' scope is not present.
             the_users_email = profile.getEmail();
             the_users_name = profile.getName();
             var usrnam_dsply = document.getElementById("usrnam_dsply");
@@ -58,7 +52,8 @@
             request.send();
         }
 
-        function signOut() {
+        function signOut() 
+        {
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
                 console.log('User signed out.');
@@ -74,35 +69,42 @@
             open_map();
         }
 
-        function submit_friend() {
-                friend_email = document.getElementById("add_friend_text").value;
-                if (friend_email == "") {
-                    alert("friend email is required");
-                } else {
-                    var url = "http://localhost:8080/add_a_friend?usr_email=";
-                    url += the_users_email + "&friend_email=" + friend_email;
-                    var request = new XMLHttpRequest();
-                    request.open('POST', url, true);
-                    request.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            raw_data = this.responseText;
-                            console.log(raw_data);
-                            raw_data = raw_data.substring(raw_data.indexOf("#"));
-                            if (raw_data == "#success") {
-                                alert("Successfully added a friend");
-                            } else if (raw_data == "#failure") {
-                                alert("Could not add this friend");
-                            }
-                        } else if (this.readyState == 4) {
-                            alert("Error adding a friend to database");
+        function submit_friend() 
+        {
+            friend_email = document.getElementById("add_friend_text").value;
+            if (friend_email == "") {
+                alert("friend email is required");
+            } else {
+                var url = "http://localhost:8080/add_a_friend?usr_email=";
+                url += the_users_email + "&friend_email=" + friend_email;
+                var request = new XMLHttpRequest();
+                request.open('POST', url, true);
+                request.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        raw_data = this.responseText;
+                        console.log(raw_data);
+                        raw_data = raw_data.substring(raw_data.indexOf("#"));
+                        if (raw_data == "#success") {
+                            alert("Successfully added a friend");
+                        } else if (raw_data == "#failure") {
+                            alert("Could not add this friend");
                         }
+                    } else if (this.readyState == 4) {
+                        alert("Error adding a friend to database");
                     }
-                    request.send();
-                    document.getElementById("add_friend_text").value = "";
                 }
-                
-                return false;
+                request.send();
+                document.getElementById("add_friend_text").value = "";
             }
+            
+            return false;
+        }
+
+        function submit_location() 
+        {
+            
+        }
+
     </script>
 
 
@@ -165,7 +167,7 @@
                     if (dur_min.value != "") {
                         x = parseInt(dur_min.value);
                         if (x >= 0 && x < 60 && x != NaN) {
-                            return true;
+                            submit_location();
                         } else {
                             alert("Duration minute value must be a number between 0 and 59.");
                         }
@@ -182,7 +184,7 @@
                     if (time_min.value != "") {
                         x = parseInt(time_hr.value);
                         if (x >= 0 && x < 60 && x != NaN) {
-                            return true;
+                            submit_location();
                         } else {
                             alert("Departure minute value must be a number between 0 and 59.");
                         }
@@ -193,7 +195,6 @@
                     alert("Departure time hour value must be a number beween 1 and 12");
                 }
             } 
-
             alert("Either a duration value or an expected departure time is required.");
 
             return false;
