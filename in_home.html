@@ -9,7 +9,11 @@
     <link rel="stylesheet" type="text/css" href="./in_stylesheet.css" />
     <script type="text/javascript" language="javascript" src="show_hide.js"></script> <!-- George made this for the in_home.html page to show/hide "article" tags -->
     <!-- <script type="text/javascript" language="javascript" src="database.js"></script> -->  <!-- Gabe please put DB accessing stuff here -->
-    <script type="text/javascript" language="javascript" src="get_friends.js"></script>  <!-- Geo's call these modules when logging in and/or adding friends -->
+    <script type="text/javascript" language="javascript" src="get_friends.js"></script> 
+    <script type="text/javascript" language="javascript" src="get_duration.js"> </script> 
+    <script type="text/javascript" language="javascript" src="get_time.js"> </script> 
+
+    <!-- Geo's call these modules when logging in and/or adding friends -->
 
     <!-- Miles's Google API stuff -->
     <script src="https://apis.google.com/js/platform.js" async defer> </script>
@@ -65,7 +69,7 @@
             var pic_dsply = document.getElementById("pic_dsply");
             pic_dsply.src = "./img/question_mark.png";
             document.getElementById("friends_pop_here").innerHTML = "";
-            document.getElementsById("no_user_signed_in").innerHTML = "No user signed in";
+            document.getElementById("no_user_signed_in").innerHTML = "No user signed in";
             open_map();
         }
 
@@ -101,9 +105,16 @@
 
         function submit_location()
         {
-            alert("submit_location");
-            current_time = "10:10";
-            time_end = "11:12";
+            var dur_hr = document.map_form.duration_hours.value;
+            var dur_min = document.map_form.duration_minutes.value;
+            var time_hr = document.map_form.time_hours.value;
+            var time_min = document.map_form.time_minutes.value;
+
+            var am = document.getElementById("am_radio").checked;
+
+
+            current_time = get_time();
+            time_end = get_end_time(dur_hr, dur_min, time_hr, time_min, am);
             var url = "http://localhost:8080/log_location?usr_email=";
             url += the_users_email + "&location=" + document.map_form.location.value;
             url += "&time_start=" + current_time + "&time_end=" + time_end;
@@ -250,12 +261,12 @@
 
                     When will you leave? &nbsp &nbsp <input type="text" name="time_hours" id="time_hours" style="width: 60px">:<input type="text" name="time_minutes" id="time_minutes" style="width: 60px">
                     <label class="radio_container">
-                        <input type="radio" name="am_or_pm" value="am" checked> 
+                        <input type="radio" name="am_or_pm" id="am_radio" value="am" checked> 
                         <span class="checkmark"> </span> am
                     </label>
 
                     <label class="radio_container">
-                        <input type="radio" name="am_or_pm" value="pm"> 
+                        <input type="radio" name="am_or_pm" id="pm_radio" value="pm"> 
                         <span class="checkmark"> </span> pm
                     </label>
                     <br>
