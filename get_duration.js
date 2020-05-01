@@ -18,7 +18,10 @@ function get_end_time(duration_hours_string, duration_minutes_string, time_hours
           time_hours = (time_hours + 12) % 24 
         }
     }
-
-    return (time_hours + ":" + ("0" + time_minutes).slice(-2));
+    if (time_minutes < 10){
+        return (time_hours + ":0" + time_minutes);
+    } else {
+    return (time_hours + ":" + time_minutes);
+    }
 }
 
