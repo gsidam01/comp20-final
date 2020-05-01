@@ -131,11 +131,10 @@
             }
             request.send();
             
-
-            dur_hr = "";
-            dur_min = "";
-            time_hr = "";
-            time_min = "";
+            document.map_form.duration_hours.value = "";
+            document.map_form.duration_minutes.value = "";
+            document.map_form.time_hours.value = "";
+            document.map_form.time_minutes.value = "";
             document.map_form.location.value = "";
 
             return false;
