@@ -37,7 +37,7 @@
 
         function load_friends_from_server()
         {
-            var url = "http://localhost:8080/get_friend_data?usr_email="; 
+            var url = "https://192.168.1.113:8080/get_friend_data?usr_email="; 
             url += the_users_email + "&usr_name=" + the_users_name;
             console.log("url" + url);
             var request = new XMLHttpRequest();
@@ -79,7 +79,7 @@
             if (friend_email == "") {
                 alert("friend email is required");
             } else {
-                var url = "http://localhost:8080/add_a_friend?usr_email=";
+                var url = "https://192.168.1.113:8080/add_a_friend?usr_email=";
                 url += the_users_email + "&friend_email=" + friend_email;
                 var request = new XMLHttpRequest();
                 request.open('POST', url, true);
@@ -115,7 +115,8 @@
 
             current_time = get_time();
             time_end = get_end_time(dur_hr, dur_min, time_hr, time_min, am);
-            var url = "http://localhost:8080/log_location?usr_email=";
+
+            var url = "https://192.168.1.113:8080/log_location?usr_email=";
             url += the_users_email + "&location=" + document.map_form.location.value;
             url += "&time_start=" + current_time + "&time_end=" + time_end;
             var request = new XMLHttpRequest();
