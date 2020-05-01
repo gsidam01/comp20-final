@@ -176,11 +176,11 @@ function getFriendInfo(email, callback) {
 async function main()
 {
     //addPerson("nuparu@gmail.com","Toa Nuparu", function() {});
-    addFriend("milesizydorczak@gmail.com","matoro@gmail.com",function(){});
+    //addFriend("milesizydorczak@gmail.com","nuparu@gmail.com",function(){});
     //addPerson("tahu@gmail.com","Tahu Nuva",function() {});
     //addFriend("tahu@gmail.com","test", function() {});
     //});
-    //updatePerson("tahu@gmail.com","Dewick",1530,1630, function(){});
+    updatePerson("matoro@gmail.com","Dewick",1530,1630, function(){});
     //checkTimes(1730,function(){});
 //	getFriendInfo("tahu@gmail.com",function(){});
     //});
