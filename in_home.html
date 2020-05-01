@@ -101,11 +101,12 @@
 
         function submit_location()
         {
+            alert("submit_location");
             current_time = "10:10";
             time_end = "11:12";
             var url = "http://localhost:8080/log_location?usr_email=";
             url += the_users_email + "&location=" + document.map_form.location.value;
-            url += "&time_start=" + current_time + "&time_end" + time_end;
+            url += "&time_start=" + current_time + "&time_end=" + time_end;
             var request = new XMLHttpRequest();
             request.open('POST', url, true);
             request.onreadystatechange = function() {
