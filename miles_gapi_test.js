@@ -1,3 +1,12 @@
+// function get_time(){
+//   let today = new Date();
+//   let hours = today.getHours();
+//   let minutes = today.getMinutes();
+//   return (hours + ":" + minutes);
+// }
+
+
+
 const http = require('http');
 const url = require("url");
 const MongoClient = require('mongodb').MongoClient;

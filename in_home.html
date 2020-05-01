@@ -196,7 +196,7 @@
                     if (time_min.value != "") {
                         x = parseInt(time_hr.value);
                         if (x >= 0 && x < 60 && x != NaN) {
-                            submit_location();
+                            return submit_location();
                         } else {
                             alert("Departure minute value must be a number between 0 and 59.");
                         }
