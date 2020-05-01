@@ -179,7 +179,7 @@
                     if (dur_min.value != "") {
                         x = parseInt(dur_min.value);
                         if (x >= 0 && x < 60 && x != NaN) {
-                            submit_location();
+                            return submit_location();
                         } else {
                             alert("Duration minute value must be a number between 0 and 59.");
                         }
@@ -241,7 +241,7 @@
         
 	    <div id="map">
             <article>
-                <form class="map_form" name="map_form" onsubmit="return submit_location();">
+                <form class="map_form" name="map_form" onsubmit="return validate_map_form();">
                     Where are you? &nbsp &nbsp <input type="text" id="location" name="location" onfocus="clear_text();" > <br>
 
                     How long will you be there? &nbsp &nbsp Hours:&nbsp<input type="text" name="duration_hours" id="duration_hours" style="width: 60px;"> &nbsp Minutes:&nbsp<input type="text" name="duration_minutes" id="duration_minutes" style="width: 60px;"> <br>
