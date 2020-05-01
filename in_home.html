@@ -99,8 +99,10 @@
             return false;
         }
 
-        function submit_location() 
+        function submit_location()
         {
+            current_time = "10:10";
+            time_end = "11:12";
             var url = "http://localhost:8080/log_location?usr_email=";
             url += the_users_email + "&location=" + document.map_form.location.value;
             url += "&time_start=" + current_time + "&time_end" + time_end;
@@ -115,6 +117,7 @@
                 }
             }
             request.send();
+            return false;
         }
 
         function open_map() 
@@ -237,7 +240,7 @@
         
 	    <div id="map">
             <article>
-                <form class="map_form" name="map_form" onsubmit="return validate_map_form();">
+                <form class="map_form" name="map_form" onsubmit="return submit_location();">
                     Where are you? &nbsp &nbsp <input type="text" id="location" name="location" onfocus="clear_text();" > <br>
 
                     How long will you be there? &nbsp &nbsp Hours:&nbsp<input type="text" name="duration_hours" id="duration_hours" style="width: 60px;"> &nbsp Minutes:&nbsp<input type="text" name="duration_minutes" id="duration_minutes" style="width: 60px;"> <br>
